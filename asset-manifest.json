@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/bank-holiday/static/css/main.1337a872.css",
+    "main.js": "/bank-holiday/static/js/main.57b1a307.js",
+    "static/js/787.bc2362ce.chunk.js": "/bank-holiday/static/js/787.bc2362ce.chunk.js",
+    "index.html": "/bank-holiday/index.html",
+    "main.1337a872.css.map": "/bank-holiday/static/css/main.1337a872.css.map",
+    "main.57b1a307.js.map": "/bank-holiday/static/js/main.57b1a307.js.map",
+    "787.bc2362ce.chunk.js.map": "/bank-holiday/static/js/787.bc2362ce.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1337a872.css",
+    "static/js/main.57b1a307.js"
+  ]
+}
