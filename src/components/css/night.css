@@ -1,0 +1,13 @@
+.night-bg1 {
+    background-color: black;
+}
+.night-bg2 {
+    background-image: url('../img/sun.png');
+    background-size: 100%;
+}
+.night-color1 {
+    color: rgb(175, 155, 155);
+}
+.night-border1 {
+    border-bottom: solid rgba(175, 155, 155, 0.5) 0.2rem;
+}
