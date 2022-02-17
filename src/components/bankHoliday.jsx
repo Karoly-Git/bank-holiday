@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import BankHolidayItem from "./bankHolidayItem";
 import RegionItem from "./regionItem";
 import YearItem from "./yearItem";
-import NightMode from "./nightMode";
+import NightSwitch from "./nightSwitch";
 import "./css/styles.css";
 
 export default function BankHoliday(props) {
@@ -128,7 +128,7 @@ export default function BankHoliday(props) {
                 <select onChange={handleYearChange} className="year-selector">
                     {yearItems}
                 </select>
-                <NightMode />
+                <NightSwitch />
             </div>
             <ol>{bankHolidayItems}</ol>
         </>

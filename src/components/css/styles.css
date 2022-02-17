@@ -65,9 +65,8 @@ h1 {
   margin-top: 1.5rem;
 }
 
-.night-switch {
-  background-image: url('../img/moon.png');
-  background-size: 100%;
+.switch {
+  *background-color: black;
   height: 2.5rem;
   width: 2.5rem;
   margin: auto 0 auto auto;
