@@ -1,27 +1,30 @@
 import React, { useState } from "react";
-import './css/night.css';
 import moon from './img/moon.png';
 import sun from './img/sun.png';
+import './css/styles.css';
 
-export default function NightSwitch() {
+export default function NightSwitch(props) {
+    const [imgClass, setImgClass] = useState('d-switch');
     const [nightmode, setNightmode] = useState(false);
     const [img, setImg] = useState(moon);
 
     const darkMode = () => {
         console.log('cklick');
+        console.log(imgClass);
         if (!nightmode) {
             setNightmode(true);
             setImg(sun);
-            document.querySelector('body').style.background = 'grey';
+            setImgClass('n-switch');
         } else {
             setNightmode(false);
             setImg(moon);
-            document.querySelector('body').style.background = 'white';
+            setImgClass('d-switch');
         }
     }
+
     return (
         <>
-            <img src={img} onClick={darkMode} className="switch"></img>
+            <img className={imgClass} src={img} onClick={darkMode}></img>
         </>
     );
 }

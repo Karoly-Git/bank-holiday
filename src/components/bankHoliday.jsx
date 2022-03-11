@@ -8,14 +8,14 @@ import "./css/styles.css";
 export default function BankHoliday(props) {
     const currentYear = String(new Date().getFullYear());
     const [doFetch, setDoFetch] = useState(true);
-    const [allBH, setAllBH] = useState([]);
+    const [allHolidays, setAllHolidays] = useState([]);
+    const [selectedRegion, setSelectedRegion] = useState("england-and-wales");
     const [selectedYear, setSelectedYear] = useState(currentYear);
     const [regions, setRegions] = useState([
         "england-and-wales",
         "scotland",
         "northern-ireland"
     ]);
-    const [selectedRegion, setSelectedRegion] = useState("england-and-wales");
     const [years, setYears] = useState([
         "2017",
         "2018",
@@ -41,31 +41,31 @@ export default function BankHoliday(props) {
             fetch("https://www.gov.uk/bank-holidays.json")
                 .then((resp) => resp.json())
                 .then((resp) => {
-                    insertBankHoliday(resp);
+                    getAllHolidays(resp);
                 });
         }
     });
 
-    function insertBankHoliday(resp) {
+    const getAllHolidays = (resp) => {
         for (let region of regions) {
-            const days = resp[region]["events"];
-            for (let day of days) {
+            const events = resp[region]["events"];
+            for (let event of events) {
                 const newBankHoliday = {
                     region: region,
-                    name: day.title,
-                    date: day.date,
-                    dayName: new Date(day.date).getDay(),
-                    year: day.date.split("-")[0],
-                    month: day.date.split("-")[1],
-                    day: day.date.split("-")[2],
-                    key: day.date + region
+                    name: event.title,
+                    date: event.date,
+                    year: event.date.split("-")[0],
+                    month: event.date.split("-")[1],
+                    day: event.date.split("-")[2],
+                    dayName: new Date(event.date).getDay(),
+                    key: event.date + region
                 };
-                setAllBH((oldList) => [...oldList, newBankHoliday]);
+                setAllHolidays((oldList) => [...oldList, newBankHoliday]);
             }
         }
     }
 
-    function makeItNice(nice) {
+    const makeItNice = (nice) => {
         return nice
             .split("-")
             .map((string) =>
@@ -76,14 +76,14 @@ export default function BankHoliday(props) {
             .join(" ");
     }
 
-    function makeItUgly(ugly) {
+    const makeItUgly = (ugly) => {
         return ugly
             .split(" ")
             .map((string) => string.toLowerCase())
             .join("-");
     }
 
-    const bankHolidayItems = allBH
+    const holidayItems = allHolidays
         .filter((x) => x.region === selectedRegion)
         .filter((x) => x.year === selectedYear)
         .map((x) => (
@@ -111,11 +111,11 @@ export default function BankHoliday(props) {
         )
     );
 
-    function handleRegionChange(e) {
+    const handleRegionChange = (e) => {
         setSelectedRegion((old) => makeItUgly(e.target.value));
     }
 
-    function handleYearChange(e) {
+    const handleYearChange = (e) => {
         setSelectedYear((old) => e.target.value);
     }
 
@@ -130,7 +130,8 @@ export default function BankHoliday(props) {
                 </select>
                 <NightSwitch />
             </div>
-            <ol>{bankHolidayItems}</ol>
+            <ol>{holidayItems}</ol>
+            <div>{props.name}</div>
         </>
     );
 }
